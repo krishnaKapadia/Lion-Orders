@@ -16,75 +16,75 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-list-header class="header">
-      Current Orders
-    </ion-list-header>
-    <hr>
+    <div *ngFor="let category of categories">
+      <ion-list-header class="header">
+        {{category.title}} Orders <p class="alignRight"></p>
+      </ion-list-header>
+      <hr>
 
-    <ion-card *ngFor="let order of orders | async">
-      <button>
-        <ion-card-header>
-          {{ order.title }}
-        </ion-card-header>
+      <ion-card *ngFor="let idx = index; let order of currentOrders[category.title]" (click)="presentOrderModal(idx, category.title)">
+        <!-- <button> -->
+          <ion-card-header>
+            Order #{{ idx }}
+          </ion-card-header>
 
-        <ion-card-content>
-          <h3>Items:</h3>
-          <ion-list>
-            <button ion-item *ngFor="let item of order.items">
-              <ion-icon name="cafe" item-start></ion-icon>
-              <ion-grid>
-                <ion-row><h2>{{ item.name }}</h2></ion-row>
-                <ion-row>
-                  <ion-col>
-                    <p>
-                      Quantity: {{ item.quantity }}, Cost: ${{ item.cost }}
-                    </p>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                </ion-row>
-              </ion-grid>
+          <ion-card-content>
+            <h3>Items:</h3>
+            <ion-list>
+              <ion-item ion-item *ngFor="let item of order.data.items">
+                <ion-icon name="cafe" item-start></ion-icon>
+                <ion-grid>
+                  <ion-row><h2>{{ item.description }}</h2></ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <p>
+                        Quantity: {{ item.quantity }}, Cost: ${{ item.cost }}
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                  </ion-row>
+                </ion-grid>
 
-              <!-- <p>Cost: ${{ item.cost }}</p>
-              <p></p> -->
+                <!-- <p>Cost: ${{ item.cost }}</p>
+                <p></p> -->
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        <!-- </button> -->
+
+
+        <!-- <ion-row no-padding>
+          <ion-col>
+            <button ion-button clear small color="danger" icon-start>
+              <ion-icon name='star'></ion-icon>
+              Favorite
             </button>
-          </ion-list>
-        </ion-card-content>
-      </button>
+          </ion-col>
+          <ion-col text-center>
+            <button ion-button clear small color="danger" icon-start>
+              <ion-icon name='musical-notes'></ion-icon>
+              Listen
+            </button>
+          </ion-col>
+          <ion-col text-right>
+            <button ion-button clear small color="danger" icon-start>
+              <ion-icon name='share-alt'></ion-icon>
+              Share
+            </button>
+          </ion-col>
+        </ion-row> -->
 
 
-      <!-- <ion-row no-padding>
-        <ion-col>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='star'></ion-icon>
-            Favorite
-          </button>
-        </ion-col>
-        <ion-col text-center>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='musical-notes'></ion-icon>
-            Listen
-          </button>
-        </ion-col>
-        <ion-col text-right>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='share-alt'></ion-icon>
-            Share
-          </button>
-        </ion-col>
-      </ion-row> -->
-
-
-    </ion-card>
-
-    <ion-fab right bottom>
-      <button (click)="newOrder()" ion-fab color="vibrant">
-        <ion-icon name="md-add"></ion-icon>
-      </button>
-    </ion-fab>
+      </ion-card>
+    </div>
   </ion-list>
 
 
-
+  <ion-fab right bottom>
+    <button (click)="newOrder()" ion-fab color="vibrant">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
 
 </ion-content>

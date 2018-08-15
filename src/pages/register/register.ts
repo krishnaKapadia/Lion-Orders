@@ -4,6 +4,7 @@ import LoginPage from "../login/login";
 import { AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from "../../models/user";
+import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -19,7 +20,7 @@ import { User } from "../../models/user";
 export class RegisterPage {
   user = {} as User;
 
-  constructor(private AFAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(private fsp: FirebaseServiceProvider, private AFAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
   }
 
   async register(user: User) {

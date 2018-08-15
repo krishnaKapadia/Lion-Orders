@@ -43,9 +43,13 @@ export class LoginPage {
   private async login(user: User) {
     try{
       const result = await this.fsp.login(user);
-      this.navCtrl.setRoot(TabsPage)
+      if(result.success) {
+        this.navCtrl.setRoot(TabsPage)
+      }else {
+        this.showAlert(result)
+      }
     }catch(error) {
-      this.showAlert(error);
+      this.showAlert(error.error);
     }
   }
 

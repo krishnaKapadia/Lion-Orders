@@ -19,15 +19,15 @@
     <form (ngSubmit)="login(user)" #loginForm="ngForm">
       <ion-row>
         <ion-col>
-          <ion-list inset>
+          <ion-list>
 
             <ion-item>
-              <ion-label>Email address</ion-label>
+              <ion-label floating>Email address</ion-label>
               <ion-input [(ngModel)]="user.email" type="text" name="email" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label>Password</ion-label>
+              <ion-label floating>Password</ion-label>
               <ion-input [(ngModel)]="user.password" type="password" name="password" required></ion-input>
             </ion-item>
 

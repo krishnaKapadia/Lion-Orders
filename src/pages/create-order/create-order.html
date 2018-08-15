@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>New Order</ion-title>
   </ion-navbar>
 
@@ -14,6 +14,70 @@
 
 <ion-content padding>
 
+  <form (ngSubmit)="submit()">
+    <ion-grid>
+      <!-- <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label stacked>Order Title</ion-label>
+            <ion-input [(ngModel)]="order.title" type="textarea"  name="desc"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
 
+      <ion-row>
+        <ion-col col-12>
+          <!-- Items: -->
+          <ion-row *ngFor="let i of Arr(items); let idx = index">
+            <ion-col col-12 col-sm>
+              <ion-item>
+                <ion-label stacked>Item Description</ion-label>
+                <ion-input [(ngModel)]="order.items[idx].description" type="textarea"  name="description"></ion-input>
+              </ion-item>
+            </ion-col>
+
+            <ion-col col-12 col-sm>
+              <ion-item>
+                <ion-label stacked>Quantity</ion-label>
+                <ion-input [(ngModel)]="order.items[idx].quantity"  type="number"  name="quantity"></ion-input>
+              </ion-item>
+            </ion-col>
+
+            <ion-col col-12 col-sm>
+              <ion-item>
+                <ion-label stacked>Cost</ion-label>
+                <ion-input [(ngModel)]="order.items[idx].cost" type="number"  name="cost"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <!-- Add item button -->
+            <ion-col col-4>
+              <button ion-button color="secondary" type="button" (click)="addItem()" block outline>Add</button>
+            </ion-col>
+
+            <!-- Remove Item button -->
+            <ion-col col-4 >
+              <button ion-button color="danger" type="button" (click)="removeItem()" block outline>Remove</button>
+            </ion-col>
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-item>
+      <ion-label stacked>Status</ion-label>
+      <ion-select [(ngModel)]="order.status" name="status">
+        <ion-option *ngFor="let status of statuses" value="{{status}}">{{status}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+
+    <button ion-button type="submit" block>Done</button>
+  </form>
 
 </ion-content>

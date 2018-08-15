@@ -6,11 +6,12 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
+import { CategoryPage } from '../pages/category/category';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { OrdersPage } from '../pages/orders/orders';
+import { OrderPage } from '../pages/order/order';
 import { LoginPage } from "../pages/login/login";
 import { RegisterPage } from "../pages/register/register";
 import { CreateOrderPage } from "../pages/create-order/create-order";
@@ -23,19 +24,23 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
+import { FirebaseAuth } from '../providers/auth/auth';
 
 import { FIREBASE_CONFIG } from "../providers/auth/firebase-config";
+import { CreateStatusPage } from '../pages/create-status/create-status';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    CategoryPage,
     ContactPage,
     HomePage,
     TabsPage,
     OrdersPage,
     LoginPage,
-    CreateOrderPage
+    CreateOrderPage,
+    OrderPage,
+    CreateStatusPage
   ],
   imports: [
     BrowserModule,
@@ -49,19 +54,22 @@ import { FIREBASE_CONFIG } from "../providers/auth/firebase-config";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    CategoryPage,
     ContactPage,
     HomePage,
     TabsPage,
     OrdersPage,
     LoginPage,
-    CreateOrderPage
+    CreateOrderPage,
+    OrderPage,
+    CreateStatusPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseServiceProvider,
+    FirebaseAuth
   ]
 })
 export class AppModule {}

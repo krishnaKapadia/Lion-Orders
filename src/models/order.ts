@@ -1,19 +1,17 @@
-interface Item {
-  name: string,
-  quantity: number,
+export interface Item {
+  description: string,
+  quantity: string,
   cost: any
 }
 
-enum Status {
-  enqueued = "Waiting",
-  cooking = "Cooking",
-  served = "Served",
-  completed = "Completed"
+export interface Category {
+  id: string,
+  title: string,
+  index: any
 }
 
 export interface Order {
-  company_id: any,
-  name: string;
+  title: string;
   items: Array<Item>;
-  status: Status;
+  status: string;
 }
